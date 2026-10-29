@@ -19,9 +19,9 @@
 /* --- Reset básico y variables --- */
 :root {
   --color-text: #363832;
-  --color-bg: #f3e8dc;
-  --color-border: #c9c2b4;
-  --color-muted: #6f6b60;
+  --color-bg: #ffffff;
+  --color-border: #d9d9d9;
+  --color-muted: #6e6e6e;
   --sidebar-width: 240px;
   --topbar-height: 64px;
   --content-max-width: 860px;
