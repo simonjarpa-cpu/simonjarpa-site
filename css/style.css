@@ -1,0 +1,405 @@
+/* ============================================================
+   style.css — hoja de estilos compartida por todo el sitio
+   Un solo archivo CSS que todas las páginas HTML enlazan con:
+   <link rel="stylesheet" href="css/style.css">
+   ============================================================ */
+
+/* --- Fuente "Bagnard", solo para el nombre "Simón Jarpa" ---
+   Archivo propio en /fonts/ (no está en Google Fonts). Licencia SIL
+   Open Font License 1.1 — ver fonts/Bagnard-OFL-LICENSE.txt */
+@font-face {
+  font-family: "Bagnard";
+  src: url("../fonts/Bagnard.woff") format("woff"),
+       url("../fonts/Bagnard.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Reset básico y variables --- */
+:root {
+  --color-text: #363832;
+  --color-bg: #f3e8dc;
+  --color-border: #c9c2b4;
+  --color-muted: #6f6b60;
+  --sidebar-width: 240px;
+  --topbar-height: 64px;
+  --content-max-width: 860px;
+  --line-gap: 10px;   /* distancia que dejan las líneas divisorias entre
+                          sí para que no se toquen en las esquinas
+                          (detalle tomado de tctc.kr / thefolioarchivo.com) */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  /* Helvetica es una fuente del sistema, no hace falta cargarla de
+     Google Fonts — si el dispositivo no la tiene, cae a Arial y
+     después a cualquier sans-serif del sistema. */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Un solo tamaño para todo el sitio (menos "Simón Jarpa" en
+     Bagnard, que es el nombre/logo y queda aparte). */
+  font-size: 13px;
+  /* Interlineado apretado y parejo (~1.4x), como en
+     mathieularone.com/Personal-work. */
+  line-height: 1.4;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Barra superior: nombre + menú principal (Artwork / Commissions /
+       CV / Contacto). Fija arriba de todo, en todas las páginas
+       interiores (no en la portada, que no la usa). --- */
+.topbar {
+  position: sticky;
+  top: 0;
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.75rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.site-title {
+  /* Bagnard es la única excepción a Helvetica en todo el sitio. Un
+     poco más grande que el resto, a pedido de Simón. */
+  font-family: "Bagnard", Georgia, serif;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  font-size: 15px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1.75rem;
+}
+
+.main-nav a {
+  letter-spacing: 0.03em;
+}
+
+.main-nav a.active {
+  font-weight: 700;
+}
+
+/* --- Debajo de la barra superior: sidebar de obras (izquierda) +
+       contenido --- */
+.layout {
+  display: flex;
+  min-height: calc(100vh - var(--topbar-height));
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  padding: 2.5rem 1.75rem;
+  position: sticky;   /* el listado se queda visible mientras scrolleas el contenido */
+  top: var(--topbar-height);
+  height: calc(100vh - var(--topbar-height));
+  overflow-y: auto;
+}
+
+/* La línea divisoria del sidebar NO es un border normal: es un
+   ::after separado, angostado por --line-gap arriba y abajo, para
+   que nunca toque la línea horizontal de la topbar ni el borde de
+   la pantalla — así las líneas no se "cruzan" en las esquinas. */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: var(--line-gap);
+  bottom: var(--line-gap);
+  right: 0;
+  width: 1px;
+  background: var(--color-border);
+}
+
+.work-list a {
+  display: block;
+  /* Sin padding extra: la separación entre obras la da solo el
+     interlineado, no un espacio adicional sumado encima. */
+  padding: 0;
+  line-height: 1.4;
+}
+
+.work-list .work-year {
+  color: var(--color-muted);
+}
+
+.content {
+  flex: 1;
+  padding: 3rem 4rem;
+}
+
+.content-inner {
+  max-width: var(--content-max-width);
+}
+
+/* --- Página de obra individual --- */
+.work-title {
+  margin: 0 0 0.25rem;
+  /* Mismo tamaño que el cuerpo de texto — es un <h1>, así que hace
+     falta font-size: 1em explícito para que no tome el tamaño
+     grande por defecto del navegador. */
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.work-meta {
+  color: var(--color-muted);
+  margin: 0 0 2rem;
+}
+
+.work-image {
+  margin-bottom: 2rem;
+  border: 1px solid var(--color-border);
+}
+
+.work-description p {
+  margin: 0 0 1rem;
+}
+
+/* Embed de video (YouTube/Vimeo) para las obras que lo necesiten, en
+   vez de (o además de) .work-image. Caja responsiva que mantiene
+   proporción 16:9 sin importar el ancho de pantalla — el iframe que
+   da el "Compartir > Insertar" de YouTube/Vimeo va adentro tal cual,
+   solo hay que sacarle su width/height fijos. */
+.work-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 2rem;
+  border: 1px solid var(--color-border);
+}
+
+.work-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Para varios YouTube Shorts (verticales) en una misma obra: se
+   muestran en fila, uno al lado del otro, cada uno en proporción
+   9:16 en vez de 16:9. En pantallas angostas se van a una columna. */
+.work-video-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.work-video-row .work-video {
+  flex: 1 1 180px;
+  max-width: 260px;
+  aspect-ratio: 9 / 16;
+  margin-bottom: 0;
+}
+
+/* --- Página índice de categoría (Artwork / Commissions): grilla de
+       miniaturas a la derecha, con el listado de siempre a la
+       izquierda. Mientras no haya fotos reales para la miniatura de
+       cada obra, se usa un cuadrado de color pastel como referencia
+       (ver render-workgrid.js) — cuando haya foto real, ese cuadrado
+       pasa a tener background-image en vez de background-color. --- */
+.content-inner--grid {
+  max-width: none;
+}
+
+.work-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 1.75rem;
+}
+
+.grid-item {
+  display: block;
+  width: 180px;
+}
+
+.grid-item:hover {
+  text-decoration: none;
+}
+
+.grid-thumb {
+  width: 180px;
+  height: 180px;
+  border: 1px solid var(--color-border);
+  margin-bottom: 0.6rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.grid-label {
+  display: block;
+  color: var(--color-text);
+}
+
+.grid-item:hover .grid-label {
+  text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+  .grid-item,
+  .grid-thumb {
+    width: 140px;
+  }
+}
+
+/* --- Páginas de texto simple (Commissions, CV, Contacto) --- */
+.page-title {
+  margin: 0 0 1.5rem;
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* --- Página de CV: columna más ancha para que quepan las dos
+       columnas de texto (como en el PDF) --- */
+.cv-page .content-inner {
+  max-width: 1200px;
+}
+
+/* Entradas del CV en dos columnas, con espaciado generoso entre cada
+   una — igual que el PDF que envió Simón, en vez de una sola línea
+   densa por entrada. */
+.cv-columns {
+  columns: 2;
+  column-gap: 3.5rem;
+}
+
+/* --- Secciones del CV (Filmografía, Estudios, Exposiciones,
+       Publicaciones) --- */
+.cv-section-title {
+  margin: 2.5rem 0 1.2rem;
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  break-after: avoid;
+  break-inside: avoid;
+}
+
+.cv-columns > .cv-section-title:first-child {
+  margin-top: 0;
+}
+
+.cv-entry {
+  margin: 0 0 1.5rem;
+  break-inside: avoid;
+}
+
+.cv-entry-title {
+  margin: 0 0 0.25rem;
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.cv-entry-details {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+/* --- Portada (index.html): ilustración a pantalla completa con
+       zonas clickeables invisibles sobre las palabras --- */
+.hero {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  aspect-ratio: 1000 / 700;   /* debe coincidir con el viewBox del SVG/imagen */
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-link {
+  position: absolute;
+  /* top/left/width/height vienen en el style="" de cada <a>, en % */
+  cursor: pointer;
+}
+
+.hero-link:hover {
+  outline: 1px dashed var(--color-muted);
+  outline-offset: 4px;
+}
+
+/* Oculta visualmente el texto de accesibilidad dentro de cada
+   .hero-link, pero lo deja disponible para lectores de pantalla */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* --- Responsive: en pantallas angostas, la barra superior pasa a dos
+       líneas y el sidebar de obras se acuesta arriba del contenido --- */
+@media (max-width: 800px) {
+  .topbar {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    position: static;
+  }
+  .main-nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .layout {
+    flex-direction: column;
+    min-height: 0;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+  /* en mobile el divisor pasa a ser horizontal, abajo del sidebar,
+     también angosto por --line-gap a los costados por la misma razón */
+  .sidebar::after {
+    top: auto;
+    bottom: 0;
+    left: var(--line-gap);
+    right: var(--line-gap);
+    width: auto;
+    height: 1px;
+  }
+  .content {
+    padding: 2rem 1.5rem;
+  }
+  .cv-columns {
+    columns: 1;
+  }
+}

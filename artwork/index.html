@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artwork — Simón Jarpa</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="../index.html" class="site-title">Simón Jarpa</a>
+    <nav class="main-nav">
+        <a href="index.html" class="active">Artwork</a>
+        <a href="../commissions/index.html">Commissions</a>
+        <a href="../cv.html">CV</a>
+        <a href="../contact.html">Contacto</a>
+      </nav>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <nav class="work-list" data-category="artwork" data-current=""></nav>
+    </aside>
+
+    <main class="content">
+      <div class="content-inner content-inner--grid">
+        <div class="work-grid" data-category="artwork"></div>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="../js/works-data.js"></script>
+  <script src="../js/render-worklist.js"></script>
+  <script src="../js/render-workgrid.js"></script>
+</body>
+</html>
