@@ -20,9 +20,9 @@
 var WORKS = {
   artwork: [
     { slug: "un-mundo-de-hombres-sin-mundo", title: "Un mundo de hombres sin mundo" },
-    { slug: "acorde", title: "Acorde" },
+    { slug: "acorde", title: "Acorde", thumb: "../images/thumbs/acorde.jpg", w: 640, h: 800 },
     { slug: "jornal-cartoon", title: "Jornal Cartoon" },
-    { slug: "pintura-y-artes-graficas", title: "Pintura y artes gráficas" }
+    { slug: "pintura-y-artes-graficas", title: "Pintura y artes gráficas", thumb: "../images/thumbs/pintura-y-artes-graficas.jpg", w: 640, h: 899 }
   ],
   commissions: [
     /* 2025 */
@@ -33,16 +33,16 @@ var WORKS = {
     { slug: "kuifi-kimun", title: "Küifi-Kimün" },
     { slug: "concha-en-acido", title: "Concha en Ácido" },
     /* 2023 */
-    { slug: "carta-de-invitacion", title: "Carta de invitación" },
-    { slug: "materia-prestada", title: "Materia Prestada" },
-    { slug: "mareas", title: "Mareas" },
-    { slug: "nano-stern-canta-a-victor", title: "Nano Stern canta a Víctor ..." },
+    { slug: "carta-de-invitacion", title: "Carta de invitación", thumb: "../images/thumbs/carta-de-invitacion.jpg", w: 640, h: 569 },
+    { slug: "materia-prestada", title: "Materia Prestada", thumb: "../images/thumbs/materia-prestada.jpg", w: 640, h: 640 },
+    { slug: "mareas", title: "Mareas", thumb: "../images/thumbs/mareas.jpg", w: 640, h: 852 },
+    { slug: "nano-stern-canta-a-victor", title: "Nano Stern canta a Víctor ...", thumb: "../images/thumbs/nano-stern-canta-a-victor.jpg", w: 640, h: 905 },
     { slug: "beau-is-afraid", title: "Beau is afraid" },
-    { slug: "alien0089", title: "aLiEN0089" },
+    { slug: "alien0089", title: "aLiEN0089", thumb: "../images/thumbs/alien0089.jpg", w: 640, h: 360 },
     { slug: "isla-alien", title: "Isla Alien" },
     /* 2022 */
     { slug: "adione-ya-no-tengo-tiempo", title: "Adione - Ya no tengo tiempo" },
-    { slug: "agua-malva", title: "Agua Malva" },
+    { slug: "agua-malva", title: "Agua Malva", thumb: "../images/thumbs/agua-malva.jpg", w: 640, h: 800 },
     { slug: "cromantis-fuego", title: "Cromantis — Fuego" },
     { slug: "grey-to-green-lydia-lee", title: "Grey to Green — Lydia Lee" },
     { slug: "return-supermoon-blues", title: "Return — Supermoon Blues" },
@@ -63,13 +63,13 @@ var WORKS = {
     { slug: "mkrni-una-vuelta-mas", title: "MKRNI — Una Vuelta Más" },
     /* sin año / en desarrollo — completar */
     { slug: "pink-my-nails", title: "Pink my Nails" },
-    { slug: "pupila", title: "Pupila" },
-    { slug: "kokoro", title: "KOKORO" },
+    { slug: "pupila", title: "Pupila", thumb: "../images/thumbs/pupila.jpg", w: 640, h: 908 },
+    { slug: "kokoro", title: "KOKORO", thumb: "../images/thumbs/kokoro.jpg", w: 640, h: 1277 },
     { slug: "eye-me-mine", title: "Eye Me Mine" },
     { slug: "witchs-business", title: "Witch's Business" },
-    { slug: "museo-de-aysen", title: "Museo de Aysén" },
+    { slug: "museo-de-aysen", title: "Museo de Aysén", thumb: "../images/thumbs/museo-de-aysen.jpg", w: 640, h: 360 },
     { slug: "art-ificial", title: "Art-ificial" },
     { slug: "senorita-sidra", title: "Señorita Sidra" },
-    { slug: "enrique-soro", title: "Enrique Soro" }
+    { slug: "enrique-soro", title: "Enrique Soro", thumb: "../images/thumbs/enrique-soro.jpg", w: 640, h: 350 }
   ]
 };

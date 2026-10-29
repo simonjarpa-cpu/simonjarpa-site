@@ -218,53 +218,63 @@ img {
   margin-bottom: 0;
 }
 
-/* --- Página índice de categoría (Artwork / Commissions): grilla de
-       miniaturas a la derecha, con el listado de siempre a la
-       izquierda. Mientras no haya fotos reales para la miniatura de
-       cada obra, se usa un cuadrado de color pastel como referencia
-       (ver render-workgrid.js) — cuando haya foto real, ese cuadrado
-       pasa a tener background-image en vez de background-color. --- */
+/* --- Página índice de categoría (Artwork / Commissions): mosaico de
+       imágenes a la derecha, con el listado de siempre a la izquierda.
+       Cada imagen conserva su propia proporción; las columnas las arma
+       js/render-workgrid.js según el ancho de la pantalla. --- */
 .content-inner--grid {
   max-width: none;
 }
 
 .work-grid {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem 1.75rem;
+  align-items: flex-start;
+  gap: 1.75rem;           /* espacio entre columnas */
+}
+
+.grid-column {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;           /* espacio entre obras de una misma columna */
 }
 
 .grid-item {
   display: block;
-  width: 180px;
 }
 
 .grid-item:hover {
   text-decoration: none;
 }
 
-.grid-thumb {
-  width: 180px;
-  height: 180px;
-  border: 1px solid var(--color-border);
-  margin-bottom: 0.6rem;
-  background-size: cover;
-  background-position: center;
-}
-
-.grid-label {
+.grid-item img {
+  width: 100%;
+  height: auto;
   display: block;
-  color: var(--color-text);
 }
 
-.grid-item:hover .grid-label {
+/* Obra que todavía no tiene imagen: cuadro de color con su título */
+.grid-placeholder {
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 1 / 1;
+  padding: 0.75rem;
+}
+
+.grid-item:hover .grid-placeholder span {
   text-decoration: underline;
 }
 
+/* Al pasar el mouse, las imágenes se atenúan un poco */
+.grid-item:hover img {
+  opacity: 0.85;
+}
+
 @media (max-width: 800px) {
-  .grid-item,
-  .grid-thumb {
-    width: 140px;
+  .work-grid,
+  .grid-column {
+    gap: 1rem;
   }
 }
 
